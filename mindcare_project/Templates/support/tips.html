@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold" style="color: #1a237e;">Mental Wellness Tips</h1>
+        <p class="lead text-muted">Actionable guides to help you balance academics and well-being.</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm overflow-hidden">
+                <div class="card-body p-4">
+                    <div class="text-success mb-3">
+                        <i class="bi bi-clock-history fs-1"></i>
+                    </div>
+                    <h5 class="fw-bold">Mastering Work-Life Balance</h5>
+                    <p class="text-secondary small">Learn how to set boundaries between your study hours and personal time to avoid burnout.</p>
+                    <ul class="list-unstyled small text-muted">
+                        <li><i class="bi bi-check2-circle text-success me-2"></i>Set a "Log-off" time daily.</li>
+                        <li><i class="bi bi-check2-circle text-success me-2"></i>Keep a dedicated study space.</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary btn-sm mt-3">Read Full Article</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm overflow-hidden">
+                <div class="card-body p-4">
+                    <div class="text-primary mb-3">
+                        <i class="bi bi-wind fs-1"></i>
+                    </div>
+                    <h5 class="fw-bold">Quick Stress Relief</h5>
+                    <p class="text-secondary small">Short, effective techniques to calm your mind during high-pressure exam weeks.</p>
+                    <ul class="list-unstyled small text-muted">
+                        <li><i class="bi bi-check2-circle text-primary me-2"></i>The 4-7-8 Breathing Method.</li>
+                        <li><i class="bi bi-check2-circle text-primary me-2"></i>5-minute mindfulness walk.</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary btn-sm mt-3">Try Techniques</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm overflow-hidden">
+                <div class="card-body p-4">
+                    <div class="text-warning mb-3">
+                        <i class="bi bi-moon-stars fs-1"></i>
+                    </div>
+                    <h5 class="fw-bold">Better Sleep Habits</h5>
+                    <p class="text-secondary small">Quality sleep is the backbone of mental health. Improve your routine for better focus.</p>
+                    <ul class="list-unstyled small text-muted">
+                        <li><i class="bi bi-check2-circle text-warning me-2"></i>No screens 30 mins before bed.</li>
+                        <li><i class="bi bi-check2-circle text-warning me-2"></i>Limit caffeine after 4 PM.</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary btn-sm mt-3">See Sleep Guide</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm overflow-hidden">
+                <div class="card-body p-4">
+                    <div class="text-danger mb-3">
+                        <i class="bi bi-people fs-1"></i>
+                    </div>
+                    <h5 class="fw-bold">Staying Connected</h5>
+                    <p class="text-secondary small">Don't isolate during tough times. Building a support network is key to resilience.</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm mt-3">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 p-5 bg-white rounded shadow-sm text-center border-start border-success border-5">
+        <p class="fst-italic fs-4 text-secondary">"You don't have to see the whole staircase, just take the first step."</p>
+        <span class="text-uppercase fw-bold text-success">— MindCare Community</span>
+    </div>
+</div>
+{% endblock %}

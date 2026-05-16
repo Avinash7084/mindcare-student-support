@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold" style="color: #1a237e;">About MindCare</h1>
+        <p class="lead text-muted">A dedicated Student Mental Health Support System built to prioritize well-being alongside academic excellence.</p>
+    </div>
+
+    <div class="row align-items-center mb-5 g-4">
+        <div class="col-md-6">
+            <h3 class="fw-bold text-success mb-3">Why MindCare?</h3>
+            <p class="text-secondary">
+                Academic pressure, irregular sleep patterns, and social isolation are rising challenges among modern students. Often, students hesitate to seek help due to social stigma or a lack of immediate resources.
+            </p>
+            <p class="text-secondary">
+                <strong>MindCare</strong> was developed to bridge this gap. It serves as a secure, private, and stigma-free digital environment where students can anonymously analyze their psychological well-being and receive immediate guidance.
+            </p>
+        </div>
+        <div class="col-md-6">
+            <div class="p-4 bg-white rounded shadow-sm border-start border-success border-4">
+                <h5 class="fw-bold"><i class="bi bi-lightbulb text-success me-2"></i>Our Core Mission</h5>
+                <p class="text-muted small mb-0">
+                    To empower students with interactive, accessible technology that fosters self-awareness, reduces academic stress, and guides them toward healthier mental patterns.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white p-5 rounded shadow-sm mb-5">
+        <h3 class="fw-bold text-center mb-4" style="color: #1a237e;">System Features</h3>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="text-primary mb-2"><i class="bi bi-clipboard2-pulse fs-2"></i></div>
+                    <h5 class="fw-bold">Mental Assessment</h5>
+                    <p class="text-muted small">A 15-question scientifically structured quiz tracking stress, anxiety, and sleep health with percentage-based indicators.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="text-success mb-2"><i class="bi bi-chat-dots fs-2"></i></div>
+                    <h5 class="fw-bold">Human-like AI Chatbot</h5>
+                    <p class="text-muted small">An NLP-driven conversational agent that recognizes academic stress triggers and answers with real-time support mechanisms.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="text-warning mb-2"><i class="bi bi-journal-bookmark fs-2"></i></div>
+                    <h5 class="fw-bold">Wellness Repository</h5>
+                    <p class="text-muted small">Curated guides and actionable steps covering sleep hygiene, the Pomodoro technique, and emotional resilience.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row text-center g-4">
+        <div class="col-12">
+            <h3 class="fw-bold mb-3" style="color: #1a237e;">Technology Stack</h3>
+            <p class="text-muted mb-4">MindCare is engineered using a robust, clean, and scalable architecture:</p>
+        </div>
+        <div class="col-md-3">
+            <div class="p-3 border rounded bg-light">
+                <h6 class="fw-bold mb-1">Backend</h6>
+                <span class="badge bg-primary">Python (Django)</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="p-3 border rounded bg-light">
+                <h6 class="fw-bold mb-1">Frontend</h6>
+                <span class="badge bg-success">HTML5 / CSS3 / Bootstrap 5</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="p-3 border rounded bg-light">
+                <h6 class="fw-bold mb-1">Asynchronous Operations</h6>
+                <span class="badge bg-dark">JavaScript (Fetch API)</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="p-3 border rounded bg-light">
+                <h6 class="fw-bold mb-1">Intelligence Layer</h6>
+                <span class="badge bg-info text-dark">Rule-Based NLP Logic</span>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5 pt-4 border-top">
+        <div class="col-md-8 text-center">
+            <h3 class="fw-bold mb-4" style="color: #1a237e;">Webpage Creator</h3>
+            
+            <div class="card border-0 shadow-sm p-4 bg-white d-inline-block w-100 align-items-center">
+               <!-- <div class="mb-3 d-inline-block position-relative">
+                    <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center mx-auto shadow-sm" style="width: 100px; height: 100px; font-size: 2.5rem; font-weight: bold;">
+                        AP
+                    </div>
+                </div> -->
+                <div class="mb-3 d-inline-block position-relative">
+                    <img src="{% static 'images/profile.png' %}" 
+                        alt="Avinash Pandey" 
+                        class="rounded-circle shadow-sm object-fit-cover" 
+                        style="width: 100px; height: 100px; border: 3px solid #198754;">
+                </div>
+                
+                <h4 class="fw-bold mb-1">Avinash Pandey</h4>
+                <p class="text-success fw-medium mb-2">Python Full-Stack Developer / Machine Learning & AI</p>
+                
+                <p class="text-secondary small max-w-md mx-auto px-md-5 mb-4">
+                    I designed and developed <strong>MindCare</strong>, a platform aimed at supporting student mental wellness through simple and accessible digital tools. By combining user-friendly design with a Python-based backend, the platform helps students perform daily emotional check-ins and encourages healthier mental habits.
+                </p>
+
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="https://www.linkedin.com/in/avinash-pandey-a8bb39354" target="_blank" class="btn btn-outline-primary btn-sm px-3 rounded-pill">
+                        <i class="bi bi-linkedin me-1"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/Avinash7084" target="_blank" class="btn btn-outline-dark btn-sm px-3 rounded-pill">
+                        <i class="bi bi-github me-1"></i> GitHub
+                    </a>
+                    <a href="mailto:avinashpandey7753@gmail.com?subject=Regarding MindCare Project" class="btn btn-outline-success btn-sm px-3 rounded-pill">
+                        <i class="bi bi-envelope me-1"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

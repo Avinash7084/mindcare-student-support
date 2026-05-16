@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="card p-4 shadow mb-5">
+    <h2 class="mb-4 text-primary">Mental Health Assessment</h2>
+    <div id="quiz-container">
+        <!-- We'll keep questions simple for the demo -->
+        <form id="assessmentForm">
+            <div class="mb-4">
+                <p class="fw-bold">1. How often have you felt unable to control important things in your life?</p>
+                <div class="d-flex gap-3">
+                    <label><input type="radio" name="q1" value="0" required> Never</label>
+                    <label><input type="radio" name="q1" value="1"> Sometimes</label>
+                    <label><input type="radio" name="q1" value="2"> Often</label>
+                    <label><input type="radio" name="q1" value="3"> Always</label>
+                </div>
+            </div>
+            <!-- Add more questions following the same pattern here -->
+            
+            <button type="button" onclick="submitQuiz()" class="btn btn-primary btn-lg">Analyze Results</button>
+        </form>
+    </div>
+
+    <!-- Results Section (Initially Hidden) -->
+    <div id="results-section" style="display:none;" class="mt-5 border-top pt-4">
+        <h3 class="text-success mb-3">Your Analysis Results:</h3>
+        <div class="mb-3">
+            <label>Stress Level</label>
+            <div class="progress"><div id="stress-bar" class="progress-bar bg-warning" style="width: 0%">0%</div></div>
+        </div>
+        <div class="mb-3">
+            <label>Anxiety Level</label>
+            <div class="progress"><div id="anxiety-bar" class="progress-bar bg-info" style="width: 0%">0%</div></div>
+        </div>
+        <div class="mb-3">
+            <label>Depression Level</label>
+            <div class="progress"><div id="depression-bar" class="progress-bar bg-danger" style="width: 0%">0%</div></div>
+        </div>
+        <div class="alert alert-light border mt-4">
+            <h5 class="fw-bold">Personalized Suggestions:</h5>
+            <ul id="suggestions-list"></ul>
+        </div>
+        <a href="/" class="btn btn-outline-secondary">Go Back Home</a>
+    </div>
+</div>
+
+<script>
+async function submitQuiz() {
+    const form = document.getElementById('assessmentForm');
+    const formData = new FormData(form);
+    const answers = Array.from(formData.values()).map(v => parseInt(v));
+
+    const response = await fetch('/assessment/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token }}' },
+        body: JSON.stringify({ answers: answers })
+    });
+
+    const data = await response.json();
+    
+    // UI Updates
+    document.getElementById('quiz-container').style.display = 'none';
+    document.getElementById('results-section').style.display = 'block';
+    
+    document.getElementById('stress-bar').style.width = data.stress + '%';
+    document.getElementById('stress-bar').innerText = data.stress + '%';
+    
+    const list = document.getElementById('suggestions-list');
+    list.innerHTML = "<li>Maintain a regular sleep schedule</li><li>Break study tasks into 25-minute sessions</li>";
+}
+</script>
+{% endblock %}

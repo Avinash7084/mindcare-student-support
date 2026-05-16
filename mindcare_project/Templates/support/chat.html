@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow border-0">
+            <div class="card-header bg-success text-white fw-bold py-3">
+                <i class="bi bi-robot me-2"></i> MindCare Assistant
+            </div>
+            <div class="card-body">
+                <div id="chat-window" style="height: 450px; overflow-y: auto; background: #ffffff; padding: 20px;" class="border rounded mb-3">
+                    <div class="chat-msg bot-msg">
+                        Hello! I'm here to listen. How are you feeling today?
+                    </div>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="userMsg" class="form-control border-success" placeholder="Type your message..." onkeypress="if(event.key === 'Enter') sendMessage()">
+                    <button class="btn btn-success px-4" onclick="sendMessage()">
+                        <i class="bi bi-send"></i> Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+async function sendMessage() {
+    const input = document.getElementById('userMsg');
+    const chat = document.getElementById('chat-window');
+    const msg = input.value;
+    if (!msg) return;
+
+    chat.innerHTML += `<div class="text-end mb-2"><strong>You:</strong> ${msg}</div>`;
+    input.value = '';
+
+    const response = await fetch('/chatbot/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token }}' },
+        body: JSON.stringify({ message: msg })
+    });
+    
+    const data = await response.json();
+    chat.innerHTML += `<div class="mb-2"><strong>Bot:</strong> ${data.response}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+}
+</script>
+
+
+{% endblock %}
