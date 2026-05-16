@@ -48,6 +48,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "mindcare_project.urls"
@@ -119,9 +120,9 @@ import os
 
 STATIC_URL = "static/"
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+#STATICFILES_DIRS = [
+#    BASE_DIR / "static",
+#]
 
 # Tell Django to look for a global static directory
 STATICFILES_DIRS = [
