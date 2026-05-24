@@ -6,6 +6,7 @@ from .utils import calculate_mental_health_metrics, get_chat_response
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
 import json
+from django.contrib.auth.models import User
 
 def home(request):
     return render(request, 'support/home.html')
@@ -50,5 +51,33 @@ def login_view(request):
             return redirect('/login/')
             
     return render(request, 'support/login.html')
+
+
+def register_view(request):
+    if request.method == 'POST':
+        # 1. Get the data from the form fields using the 'name' attribute
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        
+        # 2. Simple validation check ( if username is already taken)
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username is already taken.")
+            return render(request, 'support/register.html')
+            
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "An account with this email already exists.")
+            return render(request, 'support/register.html')
+
+        # 3. Create the user and automatically hash their password
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.save()
+        
+        # 4. Show a success message and redirect to your login page view
+        messages.success(request, "Account created successfully! Please sign in.")
+        return redirect('login') 
+
+    # If it's a GET request, just display the registration page
+    return render(request, 'support/register.html')
 
 
