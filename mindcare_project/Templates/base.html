@@ -8,7 +8,6 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Configure Tailwind to support selector-based dark mode switching
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -34,50 +33,74 @@
 
     <style>
         body { font-family: 'Inter', sans-serif; }
-        /* Smooth thematic transition variables across components */
         .theme-transition { transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-mind-darkBg dark:text-slate-100 min-vh-100 flex flex-col theme-transition">
+<body class="bg-slate-50 text-slate-800 dark:bg-mind-darkBg dark:text-slate-100 min-h-screen flex flex-col theme-transition">
 
     <nav class="sticky top-0 z-50 bg-white/80 dark:bg-mind-darkCard/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700/50 theme-transition">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 
-                <div class="flex items-center gap-3">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2906/2906496.png" width="36" alt="MindCare Symbol">
-                    <span class="text-lg font-bold uppercase tracking-wider text-mind-blue dark:text-blue-400">MindCare</span>
-                </div>
+            <a href="/" class="flex items-center gap-3 group active:scale-95 transition-transform no-underline">
+                <img src="https://cdn-icons-png.flaticon.com/512/2906/2906496.png" width="40" height="40" alt="MindCare Symbol">
+                
+                <span class="text-2xl font-bold uppercase tracking-wider text-blue-500 dark:text-blue-400 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">
+                    MINDCARE
+                </span>
+            </a>
 
                 <div class="hidden md:flex items-center space-x-1">
-                    <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 text-mind-blue dark:text-blue-400 font-semibold">Home</a>
+                    <a href="/" class="px-3 py-2 rounded-lg text-sm font-semibold text-mind-blue dark:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800">Home</a>
                     <a href="/assessment" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Assessment</a>
                     <a href="/chatbot" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">AI Assistant</a>
                     <a href="/about" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">About</a>
                 </div>
 
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 sm:gap-4">
                     
                     <button id="themeToggleBtn" class="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none transition-colors">
                         <i id="themeIcon" class="bi bi-moon-stars-fill text-lg"></i>
                     </button>
 
-                    {% if user.is_authenticated %}
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs font-medium text-slate-500 hidden sm:inline">Active Session: <strong class="text-slate-700 dark:text-slate-200">{{ user.username }}</strong></span>
+                    <div class="hidden sm:flex items-center gap-3">
+                        {% if user.is_authenticated %}
+                            <span class="text-xs font-medium text-slate-500">Session: <strong class="text-slate-700 dark:text-slate-200">{{ user.username }}</strong></span>
                             <a href="/logout" class="text-xs font-semibold px-3 py-2 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-lg">Sign Out</a>
-                        </div>
-                    {% else %}
-                        <a href="{% url 'login' %}" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-sm transition-transform active:scale-95">
-                            <i class="bi bi-box-arrow-in-right"></i> Sign In
-                        </a>
-                    {% endif %}
+                        {% else %}
+                            <a href="{% url 'login' %}" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-sm transition-transform active:scale-95">
+                                <i class="bi bi-box-arrow-in-right"></i> Sign In
+                            </a>
+                        {% endif %}
+                    </div>
+
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none transition-colors">
+                        <i id="mobileMenuIcon" class="bi bi-list text-2xl"></i>
+                    </button>
                 </div>
+            </div>
+        </div>
+
+        <div id="mobileMenuContainer" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-mind-darkCard px-4 pt-2 pb-4 space-y-1 shadow-inner animate-fade-in">
+            <a href="/" class="block px-4 py-2.5 rounded-xl text-sm font-semibold bg-blue-50 dark:bg-blue-950/40 text-mind-blue dark:text-blue-400">Home Dashboard</a>
+            <a href="/assessment" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Mental Assessment</a>
+            <a href="/chatbot" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">AI Assistant Bot</a>
+            <a href="/about" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">About Architecture</a>
+            
+            <div class="border-t border-slate-100 dark:border-slate-800 pt-3 mt-2 px-4 flex flex-col gap-2">
+                {% if user.is_authenticated %}
+                    <div class="text-xs text-slate-400">Signed in as: <strong class="text-slate-700 dark:text-slate-200">{{ user.username }}</strong></div>
+                    <a href="/logout" class="text-center text-xs font-bold py-2.5 bg-rose-500/10 text-rose-600 dark:text-rose-400 rounded-xl">Sign Out</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="text-center text-xs font-bold py-2.5 bg-blue-600 text-white rounded-xl shadow-sm">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> Account Sign In
+                    </a>
+                {% endif %}
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow max-w-7xl w-100 mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         {% block content %}{% endblock %}
     </main>
 
@@ -92,11 +115,11 @@
     </footer>
 
     <script>
+        // --- 1. DARK / LIGHT THEME CONTROLLER ---
         const themeToggleBtn = document.getElementById('themeToggleBtn');
         const themeIcon = document.getElementById('themeIcon');
         const htmlElement = document.documentElement;
 
-        // Synchronize interface with browser storage historical presets
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             htmlElement.classList.add('dark');
             themeIcon.className = 'bi bi-sun-fill text-lg text-amber-400';
@@ -114,6 +137,23 @@
                 htmlElement.classList.add('dark');
                 themeIcon.className = 'bi bi-sun-fill text-lg text-amber-400';
                 localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // --- 2. MOBILE MENU INTERACTIVE DROPDOWN CLICK LISTENER ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+        const mobileMenuContainer = document.getElementById('mobileMenuContainer');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenuContainer.classList.contains('hidden');
+            
+            if (isHidden) {
+                mobileMenuContainer.classList.remove('hidden');
+                mobileMenuIcon.className = 'bi bi-x text-2xl text-rose-500'; // Changes hamburger icon to a clean close cross
+            } else {
+                mobileMenuContainer.classList.add('hidden');
+                mobileMenuIcon.className = 'bi bi-list text-2xl'; // Changes back to hamburger bars
             }
         });
     </script>
