@@ -3,10 +3,11 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .utils import calculate_mental_health_metrics, get_chat_response
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login ,logout as auth_logout
 from django.contrib import messages
 import json
 from django.contrib.auth.models import User
+from django.contrib.auth import logout
 
 def home(request):
     return render(request, 'support/home.html')
@@ -75,9 +76,13 @@ def register_view(request):
         
         # 4. Show a success message and redirect to your login page view
         messages.success(request, "Account created successfully! Please sign in.")
-        return redirect('login') 
+        return redirect('/login/') 
 
     # If it's a GET request, just display the registration page
     return render(request, 'support/register.html')
+
+def logout_view(request):
+    auth_logout(request)         # Clears the session database cookie
+    return redirect('/login/')
 
 

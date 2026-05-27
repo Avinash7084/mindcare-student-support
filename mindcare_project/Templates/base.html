@@ -66,7 +66,7 @@
                     <div class="hidden sm:flex items-center gap-3">
                         {% if user.is_authenticated %}
                             <span class="text-xs font-medium text-slate-500">Session: <strong class="text-slate-700 dark:text-slate-200">{{ user.username }}</strong></span>
-                            <a href="/logout" class="text-xs font-semibold px-3 py-2 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-lg">Sign Out</a>
+                            <a href="{% url 'logout' %}" class="text-xs font-semibold px-3 py-2 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-lg">Sign Out</a>
                         {% else %}
                             <a href="{% url 'login' %}" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-sm transition-transform active:scale-95">
                                 <i class="bi bi-box-arrow-in-right"></i> Sign In
