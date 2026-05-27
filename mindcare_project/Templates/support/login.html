@@ -1,123 +1,172 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-<div class="min-h-[calc(100vh-10rem)] flex items-center justify-center py-6 animate-fade-in">
-    
-    <div class="bg-white dark:bg-mind-darkCard w-full max-w-[930px] rounded-3xl shadow-sm border border-slate-200 dark:border-slate-700/40 flex overflow-hidden min-h-[520px] theme-transition">
-        
-        <div class="hidden md:flex w-1/2 bg-gradient-to-br from-indigo-900 to-blue-900 dark:from-slate-900 dark:to-indigo-950 p-8 flex-col justify-center items-center text-center space-y-4 relative overflow-hidden">
-            <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl"></div>
-            
-            <div class="w-20 h-20 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center text-4xl shadow-sm animate-pulse">
-                <i class="bi bi-shield-check"></i>
-            </div>
-            
-            <div class="space-y-2 relative z-10">
-                <h2 class="text-2xl font-extrabold text-white tracking-tight">Welcome Back</h2>
-                <p class="text-xs text-slate-300 max-w-xs leading-relaxed font-medium">
-                    Securely log in to access your mental wellness assessment dashboard, tracking tools, and AI companion assistance.
-                </p>
-            </div>
-        </div>
+<div
+  class="min-h-[calc(100vh-10rem)] flex items-center justify-center py-6 animate-fade-in"
+>
+  <div
+    class="bg-white dark:bg-mind-darkCard w-full max-w-[930px] rounded-3xl shadow-sm border border-slate-200 dark:border-slate-700/40 flex overflow-hidden min-h-[520px] theme-transition"
+  >
+    <div
+      class="hidden md:flex w-1/2 bg-gradient-to-br from-indigo-900 to-blue-900 dark:from-slate-900 dark:to-indigo-950 p-8 flex-col justify-center items-center text-center space-y-4 relative overflow-hidden"
+    >
+      <div
+        class="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl"
+      ></div>
 
-        <div class="w-full md:w-1/2 p-6 sm:p-10 md:p-12 flex flex-col justify-center">
-            <div class="space-y-6">
-                
-                <div class="space-y-1">
-                    <h3 class="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">Account Login</h3>
-                    <p class="text-xs text-slate-400 dark:text-slate-500 font-medium">Please enter your institutional or registered credentials.</p>
-                </div>
-                
-                <form method="POST" action="{% url 'login' %}" autocomplete="off" class="space-y-4">
-                    {% csrf_token %}
-                    
-                    {% if messages %}
-                        <div class="space-y-2">
-                        {% for message in messages %}
-                            <div class="flex items-center gap-2.5 p-3 bg-rose-50 dark:bg-rose-950/20 text-rose-600 dark:text-rose-400 rounded-xl border border-rose-100 dark:border-rose-900/30 text-xs font-semibold animate-shake">
-                                <i class="bi bi-exclamation-triangle-fill text-sm"></i>
-                                <span>{{ message }}</span>
-                            </div>
-                        {% endfor %}
-                        </div>
-                    {% endif %}
+      <div
+        class="w-20 h-20 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center text-4xl shadow-sm animate-pulse"
+      >
+        <i class="bi bi-shield-check"></i>
+      </div>
 
-                    <div class="space-y-1.5">
-                        <label for="username" class="text-xs font-bold tracking-wide text-slate-500 dark:text-slate-400 uppercase">Username</label>
-                        <div class="flex items-center relative group">
-                            <span class="absolute left-4 text-slate-400 group-focus-within:text-emerald-500 transition-colors">
-                                <i class="bi bi-person"></i>
-                            </span>
-                            <input type="text" 
-                                   name="username" 
-                                   id="username" 
-                                   class="w-full bg-slate-50 dark:bg-slate-800/40 text-sm text-slate-800 dark:text-slate-100 pl-11 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 focus:outline-none focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:ring-1 focus:ring-emerald-500/20 transition-all placeholder-slate-400" 
-                                   placeholder="Enter your username" 
-                                   required>
-                        </div>
-                    </div>
-
-                    <div class="space-y-1.5">
-                        <div class="flex justify-between items-center">
-                            <label for="password" class="text-xs font-bold tracking-wide text-slate-500 dark:text-slate-400 uppercase">Password</label>
-                            <a href="#" class="text-xs font-bold text-emerald-500 hover:underline">Forgot?</a>
-                        </div>
-                        <div class="flex items-center relative group">
-                            <span class="absolute left-4 text-slate-400 group-focus-within:text-emerald-500 transition-colors">
-                                <i class="bi bi-lock"></i>
-                            </span>
-                            <input type="password" 
-                                   name="password" 
-                                   id="password" 
-                                   class="w-full bg-slate-50 dark:bg-slate-800/40 text-sm text-slate-800 dark:text-slate-100 pl-11 pr-12 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 focus:outline-none focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:ring-1 focus:ring-emerald-500/20 transition-all placeholder-slate-400" 
-                                   placeholder="••••••••" 
-                                   required>
-                            
-                            <button type="button" 
-                                    id="togglePassword" 
-                                    class="absolute right-3 p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors focus:outline-none text-sm">
-                                <i class="bi bi-eye" id="eyeIcon"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="pt-2">
-                        <button type="submit" class="w-full inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-sm font-bold py-3 px-4 rounded-xl shadow-sm shadow-emerald-600/10 transition-all cursor-pointer">
-                            Sign In
-                        </button>
-                    </div>
-
-                    <div class="text-center pt-2">
-                        <p class="text-xs text-slate-400 dark:text-slate-500 font-medium">
-                            New to the platform? <a href="{% url 'register' %}" class="text-emerald-500 font-bold hover:underline ml-1">Create an account</a>
-                        </p>
-                    </div>
-                </form>
-                
-            </div>
-        </div>
-
+      <div class="space-y-2 relative z-10">
+        <h2 class="text-2xl font-extrabold text-white tracking-tight">
+          Welcome Back
+        </h2>
+        <p class="text-xs text-slate-300 max-w-xs leading-relaxed font-medium">
+          Securely log in to access your mental wellness assessment dashboard,
+          tracking tools, and AI companion assistance.
+        </p>
+      </div>
     </div>
+
+    <div
+      class="w-full md:w-1/2 p-6 sm:p-10 md:p-12 flex flex-col justify-center"
+    >
+      <div class="space-y-6">
+        <div class="space-y-1">
+          <h3
+            class="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight"
+          >
+            Account Login
+          </h3>
+          <p class="text-xs text-slate-400 dark:text-slate-500 font-medium">
+            Please enter your institutional or registered credentials.
+          </p>
+        </div>
+
+        <form
+          method="POST"
+          action="{% url 'login' %}"
+          autocomplete="off"
+          class="space-y-4"
+        >
+          {% csrf_token %} {% if messages %}
+          <div class="space-y-2">
+            {% for message in messages %}
+            <div
+              class="flex items-center gap-2.5 p-3 bg-rose-50 dark:bg-rose-950/20 text-rose-600 dark:text-rose-400 rounded-xl border border-rose-100 dark:border-rose-900/30 text-xs font-semibold animate-shake"
+            >
+              <i class="bi bi-exclamation-triangle-fill text-sm"></i>
+              <span>{{ message }}</span>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <div class="space-y-1.5">
+            <label
+              for="username"
+              class="text-xs font-bold tracking-wide text-slate-500 dark:text-slate-400 uppercase"
+              >Username</label
+            >
+            <div class="flex items-center relative group">
+              <span
+                class="absolute left-4 text-slate-400 group-focus-within:text-emerald-500 transition-colors"
+              >
+                <i class="bi bi-person"></i>
+              </span>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                class="w-full bg-slate-50 dark:bg-slate-800/40 text-sm text-slate-800 dark:text-slate-100 pl-11 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 focus:outline-none focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:ring-1 focus:ring-emerald-500/20 transition-all placeholder-slate-400"
+                placeholder="Enter your username"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <div class="flex justify-between items-center">
+              <label
+                for="password"
+                class="text-xs font-bold tracking-wide text-slate-500 dark:text-slate-400 uppercase"
+                >Password</label
+              >
+              <a
+                href="#"
+                class="text-xs font-bold text-emerald-500 hover:underline"
+                >Forgot?</a
+              >
+            </div>
+            <div class="flex items-center relative group">
+              <span
+                class="absolute left-4 text-slate-400 group-focus-within:text-emerald-500 transition-colors"
+              >
+                <i class="bi bi-lock"></i>
+              </span>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="w-full bg-slate-50 dark:bg-slate-800/40 text-sm text-slate-800 dark:text-slate-100 pl-11 pr-12 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 focus:outline-none focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:ring-1 focus:ring-emerald-500/20 transition-all placeholder-slate-400"
+                placeholder="••••••••"
+                required
+              />
+
+              <button
+                type="button"
+                id="togglePassword"
+                class="absolute right-3 p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors focus:outline-none text-sm"
+              >
+                <i class="bi bi-eye" id="eyeIcon"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button
+              type="submit"
+              class="w-full inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-sm font-bold py-3 px-4 rounded-xl shadow-sm shadow-emerald-600/10 transition-all cursor-pointer"
+            >
+              Sign In
+            </button>
+          </div>
+
+          <div class="text-center pt-2">
+            <p class="text-xs text-slate-400 dark:text-slate-500 font-medium">
+              New to the platform?
+              <a
+                href="{% url 'register' %}"
+                class="text-emerald-500 font-bold hover:underline ml-1"
+                >Create an account</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-    const togglePasswordBtn = document.getElementById('togglePassword');
-    const passwordInput = document.getElementById('password');
-    const eyeIcon = document.getElementById('eyeIcon');
+  const togglePasswordBtn = document.getElementById("togglePassword");
+  const passwordInput = document.getElementById("password");
+  const eyeIcon = document.getElementById("eyeIcon");
 
-    togglePasswordBtn.addEventListener('click', function () {
-        // Toggle the input type attribute state representation map safely
-        const isPassword = passwordInput.getAttribute('type') === 'password';
-        passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
-        
-        // Dynamically toggle vector icon states without structural overhead
-        if (isPassword) {
-            eyeIcon.className = 'bi bi-eye-slash';
-        } else {
-            eyeIcon.className = 'bi bi-eye';
-        }
-    });
+  togglePasswordBtn.addEventListener("click", function () {
+    // Toggle the input type attribute state representation map safely
+    const isPassword = passwordInput.getAttribute("type") === "password";
+    passwordInput.setAttribute("type", isPassword ? "text" : "password");
+
+    // Dynamically toggle vector icon states without structural overhead
+    if (isPassword) {
+      eyeIcon.className = "bi bi-eye-slash";
+    } else {
+      eyeIcon.className = "bi bi-eye";
+    }
+  });
 </script>
 
 {% endblock %}
